@@ -26,9 +26,19 @@ public class UserController {
         return tableService.createTableBooking(tableDTO);
     }
 
-    @PatchMapping(path = "/update/tables/{id}")
+    @PatchMapping(path = "/modify/tables/{id}")
     public TableDTO updateTableBooking(@PathVariable("id") int id, @RequestBody TableDTO tableDTO) {
         return tableService.updateTableBooking(tableDTO);
+    }
+
+    @DeleteMapping("/remove/tables/{id}")
+    public Boolean deleteTableBooking(@PathVariable("id") int id) {
+        return tableService.deleteTableBooking(id);
+    }
+
+    @GetMapping("/searchByName/tables")
+    public List<TableDTO> searchTableBookingByName(@RequestParam("name") String name) {
+        return tableService.searchTableBookingByName(name);
     }
 
 }

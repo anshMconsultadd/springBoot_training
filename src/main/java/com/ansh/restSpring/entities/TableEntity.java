@@ -12,6 +12,9 @@ public class TableEntity {
     private String bookedBy;
     private int tableNumber;
 
+    public TableEntity() {
+    }
+
     public TableEntity(int capacity, String bookedBy, int tableNumber) {
         this.capacity = capacity;
         this.bookedBy = bookedBy;
