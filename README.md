@@ -31,22 +31,4 @@ git clone https://github.com/yourusername/table-booking-system.git
 cd table-booking-system
 ```
 
-table-booking-system/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── ansh/
-│   │   │           └── restSpring/
-│   │   │               ├── controllers/         # Contains the REST controllers
-│   │   │               ├── dto/                 # Contains DTO classes
-│   │   │               ├── entities/            # JPA entity classes
-│   │   │               ├── repositories/        # Repository interfaces for DB interaction
-│   │   │               └── services/            # Service layer for business logic
-│   │   ├── resources/
-│   │   │   ├── application.properties  # Configuration file
-│   │   │   └── static/                 # Static resources (if any)
-│   │   │   └── templates/              # Template files (if any)
-├── target/                             # Compiled bytecode and JAR files
-├── pom.xml                             # Maven configuration file
-└── README.md                           # This README file
+
