@@ -3,11 +3,8 @@ package com.ansh.restSpring.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-
 @Table(name = "USERS")
 public class UserInfo {
 
@@ -15,20 +12,23 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private long id;
+
+
+    @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
+
     @JsonIgnore
+ 
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRole> roles = new HashSet<>();
 
     public UserInfo() {
     }
 
-    public UserInfo(long id, String username, String password, Set<UserRole> roles) {
+    public UserInfo(long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
     public long getId() {
@@ -54,13 +54,4 @@ public class UserInfo {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<UserRole> roles) {
-        this.roles = roles;
-    }
-
 }

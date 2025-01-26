@@ -2,6 +2,7 @@ package com.ansh.restSpring.configuration;
 
 import com.ansh.restSpring.JwtAuthFilter;
 import com.ansh.restSpring.component.UserDetailsServiceImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,20 +47,41 @@ public class SecurityConfig {
 //                .build();
 //
 //    }
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.csrf().disable()
-            .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/api/v1/signup", "/api/v1/login", "/h2-console/**").permitAll()  // Fixed comma
-                    .anyRequest().authenticated()
-            )
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .headers().frameOptions().disable(); // Needed for H2 console
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    http.csrf().disable()
+//            .authorizeHttpRequests((authorize) -> authorize
+//                    .requestMatchers("/api/v1/signup", "/api/v1/login", "/h2-console/**").permitAll()  // Fixed comma
+//                    .anyRequest().authenticated()
+//            )
+//            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//            .authenticationProvider(authenticationProvider())
+//            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+//            .headers().frameOptions().disable(); // Needed for H2 console
+//
+//    return http.build();
+//}
 
-    return http.build();
-}
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/api/v1/signup", "/api/v1/login", "/h2-console/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling((exceptions) -> exceptions
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("Unauthorized access");
+                        })
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .headers().frameOptions().disable(); // H2 console compatibility
+
+        return http.build();
+    }
 
 
     @Bean

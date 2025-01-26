@@ -1,36 +1,25 @@
 package com.ansh.restSpring;
 
 import com.ansh.restSpring.entities.UserInfo;
-import com.ansh.restSpring.entities.UserRole;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 public class CustomUserDetails extends UserInfo implements UserDetails {
 
     private String username;
     private String password;
-    Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(UserInfo byUsername) {
-        this.username = byUsername.getUsername();
-        this.password= byUsername.getPassword();
-        List<GrantedAuthority> auths = new ArrayList<>();
-
-        for(UserRole role : byUsername.getRoles()){
-
-            auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase()));
-        }
-        this.authorities = auths;
+    public CustomUserDetails(UserInfo userInfo) {
+        this.username = userInfo.getUsername();
+        this.password = userInfo.getPassword();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return Collections.emptyList(); // No roles/permissions, so return an empty list.
     }
 
     @Override
