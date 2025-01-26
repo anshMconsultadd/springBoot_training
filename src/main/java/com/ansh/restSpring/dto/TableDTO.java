@@ -10,7 +10,7 @@ public class TableDTO {
     public TableDTO(int tableId, int capacity, String bookedBy, int tableNumber) {
         this.tableId = tableId;
         this.capacity = capacity;
-        BookedBy = bookedBy;
+        this.BookedBy = bookedBy;
         this.tableNumber = tableNumber;
     }
 

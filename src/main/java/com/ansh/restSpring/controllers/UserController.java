@@ -84,8 +84,10 @@ public class UserController {
     public JwtResponseDTO authenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO) {
         System.out.println("login attempts for "+authRequestDTO.getUsername()+"and the password is "+authRequestDTO.getPassword());
         Authentication authentication = authenticationManager.authenticate(
+
                 new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword())
         );
+
         if (authentication.isAuthenticated()) {
             return new JwtResponseDTO(jwtService.generateToken(authRequestDTO.getUsername()));
         } else {
