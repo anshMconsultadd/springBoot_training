@@ -68,12 +68,13 @@ Make sure you have the following installed on your system:
 2. Run the application:
    ```bash
    mvn spring-boot:run
-   
-3. Images for refrence are in the static folder
-   ![Alt text]( src/main/resources/static/Screenshot%202025-01-27%20at%2011.06.10.png"Optional title")
-    ![Alt text]( src/main/resources/static/Screenshot%202025-01-27%20at%2011.06.38.png"Optional title")
-  ![Alt text]( src/main/resources/static/Screenshot%202025-01-27%20at%2011.07.45.png"Optional title")
-      ![Alt text]( src/main/resources/static/Screenshot%202025-01-27%20at%2011.08.00.png"Optional title")
-     
+
+3. Images for reference are in the static folder
+
+![Alt text](src/main/resources/static/Screenshot%202025-01-27%20at%2011.06.10.png "Optional title")
+![Alt text](src/main/resources/static/Screenshot%202025-01-27%20at%2011.06.38.png "Optional title")
+![Alt text](src/main/resources/static/Screenshot%202025-01-27%20at%2011.07.45.png "Optional title")
+![Alt text](src/main/resources/static/Screenshot%202025-01-27%20at%2011.08.00.png "Optional title")
+
 
 
